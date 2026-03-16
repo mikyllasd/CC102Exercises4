@@ -3,7 +3,7 @@ using namespace std;
 
 void analyzeGrades(int* grades, int students, int subjects){
 
-    cout << "\n============= GRADE MATRIX =======2======\n";
+    cout << "\n=============== GRADE MATRIX ===============\n";
     cout << "\t";
     for(int j=0; j<subjects; j++)
         cout << "SUB" << j+1 << "\t";
