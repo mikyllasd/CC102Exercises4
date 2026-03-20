@@ -9,15 +9,6 @@ struct book {
     int rating;
 };
 
-string getCategory(int rating){
-    if(rating == 5) return "EXCELLENT";
-    else if(rating == 4) return "VERY GOOD";
-    else if(rating == 3) return "GOOD";
-    else if(rating == 2) return "FAIR";
-    else if(rating == 1) return "POOR";
-    else                 return "NO RATING";
-}
-
 int main(){
     char runAgain;
 
@@ -30,13 +21,13 @@ int main(){
         book books[numBooks];
 
         for(int i=0; i<numBooks; i++){
-            cout << "\n=== BOOK " << i+1 << " ===\n";
+            cout << "\n--- BOOK " << i+1 << " ---\n";
 
             int barcode;
             bool duplicate;
             do {
                 duplicate = false;
-                cout << "BARCODE: ";
+                cout << "BARCODE:        ";
                 cin >> barcode;
 
                 for(int k=0; k<i; k++){
@@ -61,29 +52,33 @@ int main(){
                 cout << "RATING (0-5):   ";
                 cin >> books[i].rating;
                 if(books[i].rating < 0 || books[i].rating > 5)
-                    cout << "INVALID RATING!!! ENTER 0-5 ONLY.\n";
+                    cout << "INVALID! ENTER 0-5 ONLY.\n";
             } while(books[i].rating < 0 || books[i].rating > 5);
-
         }
 
-        cout << "\n========================================";
-        cout << "==========================================\n";
-        cout << "Barcode\t\tTitle\t\t\tYEAR\tRATING\tCATEGORY\n";
-        cout << "========================================";
-        cout << "==========================================\n";
+        cout << "\n============================================================\n";
+        cout << "BARCODE\tTITLE\t\t\tYEAR\tRATING\tCATEGORY\n";
+        cout << "============================================================\n";
 
         for(int i=0; i<numBooks; i++){
-            cout << books[i].barcode << "\t\t"
+            string category;
+            if(books[i].rating == 5)      category = "EXCELLENT";
+            else if(books[i].rating == 4) category = "VERY GOOD";
+            else if(books[i].rating == 3) category = "GOOD";
+            else if(books[i].rating == 2) category = "FAIR";
+            else if(books[i].rating == 1) category = "POOR";
+            else                          category = "NO RATING";
+
+            cout << books[i].barcode << "\t"
                  << books[i].title   << "\t\t\t"
                  << books[i].year    << "\t"
                  << books[i].rating  << "\t"
-                 << getCategory(books[i].rating)<< "\n";
+                 << category         << "\n";
         }
 
-        cout << "========================================";
-        cout << "==========================================\n";
+        cout << "============================================================\n";
 
-        cout << "\nDO YOU WANT TO RUN AGAIN? (y/n): ";
+        cout << "\nRUN AGAIN? (y/n): ";
         cin >> runAgain;
 
     } while(runAgain == 'y' || runAgain == 'Y');
